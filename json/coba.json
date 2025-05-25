@@ -1,0 +1,13 @@
+[
+    { 
+        "nama" : "atil",
+        "umur" : 20,
+        "nip" : "2217020025",
+        "lulus" : true, 
+        "hobby" : [
+            "nonton", 
+            "baca novel"
+         ],
+        "Dosenpengampu" : "Haditya Prasetyo"
+    }
+]
