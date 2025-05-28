@@ -1,3 +1,33 @@
+<?php
+
+function get_CURL($url)
+{
+  $curl = curl_init();
+  curl_setopt($curl, CURLOPT_URL, $url);
+  curl_setopt ($curl, CURLOPT_RETURNTRANSFER, 1);
+  $result = curl_exec ($curl);
+  curl_close($curl);
+  
+  return json_decode ($result, true);
+  
+  
+}
+
+$result = get_CURL ('https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id=UC_qiXx-3t4Ev2EinteL3OAw&key=AIzaSyAoCv-dBIjagpMtmG0p7K8-DOWa4kLIDsY');
+
+
+$youtubeProfilePic = $result ['items'][0]['snippet']['thumbnails']['medium']['url'];
+$channelName =  $result ['items'][0]['snippet']['title'];
+$subscriber = $result ['items'][0]['statistics']['subscriberCount'];
+
+//vid terakhir
+$urlLatestVideo = ('https://www.googleapis.com/youtube/v3/search?key=AIzaSyAoCv-dBIjagpMtmG0p7K8-DOWa4kLIDsY&channelId=UC_qiXx-3t4Ev2EinteL3OAw&maxResults=1&order=date&part=snippet');
+$result = get_CURL($urlLatestVideo);
+//var_dump($result);
+$latestVideoId = $result['items'][0]['id']['videoId'];
+
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -68,9 +98,78 @@
       </div>
     </section>
 
+    <!-- you tube dan ig -->
+     <section class = "social bg-light" id="social">
+      <div class="container">
+        <div class = "row pt-4 mb-4">
+          <div class = "col text-center">
+            <h2> Social Media</h2>
+          </div>
+        </div>
+
+        <div class = "row justify-content-center">
+          <div class = "col-md-5">
+          <div class="row">
+            <div class="col-md-4">
+              <img src = "<?= $youtubeProfilePic; ?>" width="200" class = "rounded-circle img-thumbnail">
+            </div>
+            <div class="col-md-8">
+              <h5><?= $channelName; ?></h5>
+              <p><?= $subscriber; ?> Subscriber</p>
+              <div class="g-ytsubscribe" data-channelid="UC_qiXx-3t4Ev2EinteL3OAw" data-layout="default" data-count="hidden"></div>
+          </div>
+        </div>
+        <div class = "row mt-3 pb-3">
+          <div class = "col">
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe class="embed-responsive-item"
+            src="https://www.youtube.com/embed/<?= $latestVideoId ?>?rel=0"
+            title="YouTube video" allowfullscreen></iframe>
+        </div>
+      </div>
+      </div>
+      </div>      
+         <div class="col-md-5">
+  <div class="row">
+    <div class="col-md-4">
+      <img src="img/profile1.png" class="rounded-circle img-thumbnail" width="200">
+    </div>
+    <div class="col-md-8">
+      <h5>@atil</h5>
+      <p>70000 Followers</p>
+    </div>
+  </div>
+
+  <!-- Tambahkan tulisan di sini -->
+  <h6 class="mt-3">Instagram Feed</h6>
+
+  <!-- Galeri Instagram -->
+  <div class="row mt-1">
+    <div class="col-4 p-1">
+      <img src="img/thumbs/1.png" class="img-fluid rounded" alt="IG1">
+    </div>
+    <div class="col-4 p-1">
+      <img src="img/thumbs/2.png" class="img-fluid rounded" alt="IG2">
+    </div>
+    <div class="col-4 p-1">
+      <img src="img/thumbs/3.png" class="img-fluid rounded" alt="IG3">
+    </div>
+  </div>
+</div>
+
+  </div>
+</div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </section>
+
 
     <!-- Portfolio -->
-    <section class="portfolio bg-light" id="portfolio">
+    <section class="portfolio" id="portfolio">
       <div class="container">
         <div class="row pt-4 mb-4">
           <div class="col text-center">
@@ -139,7 +238,7 @@
 
 
     <!-- Contact -->
-    <section class="contact" id="contact">
+    <section class="contact bg-light" id="contact">
       <div class="container">
         <div class="row pt-4 mb-4">
           <div class="col text-center">
@@ -216,5 +315,6 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <script src="https://apis.google.com/js/platform.js"></script>
   </body>
 </html>
