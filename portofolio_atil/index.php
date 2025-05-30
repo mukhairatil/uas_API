@@ -60,10 +60,8 @@ $latestVideoId = $result['items'][0]['id']['videoId'];
               <a class="nav-link" href="#about">About</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#portfolio">Portfolio</a>
+              <a class="nav-link" href="#portfolio">Portofolio</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="../wpu_movie/index.html">Film</a>
             </li>
           </ul>
         </div>
@@ -78,7 +76,7 @@ $latestVideoId = $result['items'][0]['id']['videoId'];
         <h1 class="display-4 font-weight-bold">I am Mukhairatil Afkar</h1>
         <h2 class="h4 mb-4">Mahasiswi Sistem Informasi</h2>
         <p class="mb-4">Saya suka mengeksplorasi teknologi baru dan belajar dari pengalaman. Mari kita terhubung!</p>
-        <a href="#portfolio" class="btn btn-outline-light btn-lg rounded-pill">View Portfolio</a>
+        <a href="#portfolio" class="btn btn-outline-light btn-lg rounded-pill">View Portofolio</a>
       </div>
       <div class="col-md-6 text-center">
        <img src="img/profile.jpg" alt="Afkar" class="rounded-circle img-thumbnail" style="max-height: 400px;">
@@ -138,7 +136,7 @@ $latestVideoId = $result['items'][0]['id']['videoId'];
          <div class="col-md-5">
   <div class="row">
     <div class="col-md-4">
-      <img src="img/profile1.png" class="rounded-circle img-thumbnail" width="200">
+      <img src="img\profile2.png" class="rounded-circle img-thumbnail" width="200">
     </div>
     <div class="col-md-8">
       <h5 style="color: white;">@atil</h5>
@@ -152,13 +150,13 @@ $latestVideoId = $result['items'][0]['id']['videoId'];
   <!-- Galeri Instagram -->
   <div class="row mt-1">
     <div class="col-4 p-1">
-      <img src="img/thumbs/1.png" class="img-fluid rounded" alt="IG1">
+      <img src="img\thumbs\1 (1).jpeg" class="img-fluid rounded" alt="IG1">
     </div>
     <div class="col-4 p-1">
-      <img src="img/thumbs/2.png" class="img-fluid rounded" alt="IG2">
+      <img src="img\thumbs\1 (3).jpeg" class="img-fluid rounded" alt="IG2">
     </div>
     <div class="col-4 p-1">
-      <img src="img/thumbs/3.png" class="img-fluid rounded" alt="IG3">
+      <img src="img\thumbs\1 (4).jpeg" class="img-fluid rounded" alt="IG3">
     </div>
   </div>
 </div>
@@ -179,7 +177,7 @@ $latestVideoId = $result['items'][0]['id']['videoId'];
   <div class="container">
     <div class="row pt-4 mb-4">
       <div class="col text-center">
-        <h2 class="font-weight-bold">Portfolio</h2>
+        <h2 class="font-weight-bold">Portofolio</h2>
         <p class="text-muted">Beberapa proyek yang telah saya kerjakan</p>
       </div>
     </div>
@@ -191,62 +189,33 @@ $latestVideoId = $result['items'][0]['id']['videoId'];
           <div class="card-body">
             <h5 class="card-title">Cari Info Movie!</h5>
             <p class="card-text">Website pencarian film yang memanfaatkan API OMDB. Dibuat dengan HTML, CSS, dan JavaScript.</p>
-            <a href="../wpu_movie/index.html" class="btn btn-primary btn-sm">Lihat Proyek</a>
+            <a href="wpu_movie/index.html" class="btn btn-primary btn-sm">Lihat Proyek</a>
           </div>
         </div>
       </div>
 
           <div class="col-md mb-4">
             <div class="card">
-              <img class="card-img-top" src="img/thumbs/cari.webp" alt="Card image cap">
+              <img class="card-img-top" src="img/thumbs/deepseek.jpg" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">Chatbot by Deepseek!</h5>
                 <p class="card-text">Website chatbot by Mukhairatil</p>
-                <a href="../chatbot_deepseek" class="btn btn-primary btn-sm">Lihat Proyek</a>
+                <a href="chatbot_deepseek" class="btn btn-primary btn-sm">Lihat Proyek</a>
               </div>
             </div>
           </div>
 
           <div class="col-md mb-4">
             <div class="card">
-              <img class="card-img-top" src="img/thumbs/3.png" alt="Card image cap">
+              <img class="card-img-top" src="img/thumbs/logo.png" alt="Card image cap">
               <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <h5 class="card-title">Pizza Hut!</h5>
+                <p class="card-text">Website melihat menu</p>
+                <a href="wpu_hut/latihan.php" class="btn btn-primary btn-sm">Lihat Proyek</a>
               </div>
             </div>
           </div>   
         </div>
-
-        <div class="row">
-          <div class="col-md mb-4">
-            <div class="card">
-              <img class="card-img-top" src="img/thumbs/4.png" alt="Card image cap">
-              <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              </div>
-            </div>
-          </div> 
-          <div class="col-md mb-4">
-            <div class="card">
-              <img class="card-img-top" src="img/thumbs/5.png" alt="Card image cap">
-              <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md mb-4">
-            <div class="card">
-              <img class="card-img-top" src="img/thumbs/6.png" alt="Card image cap">
-              <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
 
     <!-- Contact -->

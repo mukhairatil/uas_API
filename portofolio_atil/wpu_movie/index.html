@@ -14,7 +14,7 @@
   <div class="container">
     <div class="d-flex align-items-center">
       <!-- Panah kiri -->
-      <a href="../portofolio_atil/index.php" style="color: white; text-decoration: none; font-size: 30px; font-weight: 900; margin-right: 15px; user-select: none; line-height: 1;">
+      <a href="../../portofolio_atil/index.php" style="color: white; text-decoration: none; font-size: 30px; font-weight: 900; margin-right: 15px; user-select: none; line-height: 1;">
   ⇐
 </a>
 
@@ -57,10 +57,11 @@
       <hr>
       <div class="mb-4">
 </div>
-<div class="container mt-4">
+<div id="recommended-container" class="container mt-4">
     <h5>Recommended Movies</h5>
     <div class="row" id="recommended-movies"></div>
 </div>
+
 
       <div class="row" id="movie-list"></div>
     </div>
@@ -94,48 +95,105 @@
 <script>
   const recommendedTitles = ["Coco", "Zootopia", "Toy Story", "Frozen", "Inside Out", "Big Hero 6"];
 
-  function loadRecommendedMovies() {
-    $('#recommended-movies').html('');
-    recommendedTitles.forEach(title => {
-      $.ajax({
-        url: 'http://www.omdbapi.com',
-        type: 'get',
-        dataType: 'json',
-        data: {
-          'apikey': '73c64296',
-          't': title
-        },
-        success: function(movie) {
-          if (movie.Response === "True") {
-            $('#recommended-movies').append(`
-              <div class="col-md-4 mb-3">
-                <div class="card">
-                  <img src="${movie.Poster}" class="card-img-top" alt="${movie.Title}">
-                  <div class="card-body">
-                    <h5 class="card-title">${movie.Title}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">${movie.Year}</h6>
-                    <a href="#" class="see-detail text-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-id="${movie.imdbID}">See Detail</a>
-                  </div>
+ function loadRecommendedMovies() {
+  $('#recommended-movies').html('');
+  recommendedTitles.forEach(title => {
+    $.ajax({
+      url: 'https://www.omdbapi.com',  // pastikan pakai https
+      type: 'get',
+      dataType: 'json',
+      data: {
+        'apikey': '73c64296',
+        't': title
+      },
+      success: function(movie) {
+        if (movie.Response === "True") {
+          $('#recommended-movies').append(`
+            <div class="col-md-4 mb-3">
+              <div class="card">
+                <img src="${movie.Poster}" class="card-img-top" alt="${movie.Title}">
+                <div class="card-body">
+                  <h5 class="card-title">${movie.Title}</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">${movie.Year}</h6>
+                  <a href="#" class="see-detail text-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-id="${movie.imdbID}">See Detail</a>
                 </div>
               </div>
-            `);
-          }
+            </div>
+          `);
         }
-      });
+      }
     });
-  }
-
-  // Jalankan ketika dokumen sudah siap
-  $(document).ready(function() {
-    loadRecommendedMovies();
   });
 
+  // Pastikan container rekomendasi muncul saat load rekomendasi
+  $('#recommended-container').show();
+  $('#movie-list').empty(); // kosongkan hasil pencarian kalau ada
+}
+
+function searchMovies(keyword) {
+  $('#movie-list').html(''); // kosongkan hasil sebelumnya
+
+  if (keyword === '') {
+    // Jika pencarian kosong, tampilkan rekomendasi lagi
+    loadRecommendedMovies();
+    return;
+  }
+
+  $.ajax({
+    url: 'https://www.omdbapi.com',
+    type: 'get',
+    dataType: 'json',
+    data: {
+      apikey: '73c64296',
+      s: keyword
+    },
+    success: function(response) {
+      if(response.Response === "True") {
+        const movies = response.Search;
+        // sembunyikan rekomendasi saat ada hasil pencarian
+        $('#recommended-container').hide();
+        movies.forEach(movie => {
+          $('#movie-list').append(`
+            <div class="col-md-3 mb-3">
+              <div class="card">
+                <img src="${movie.Poster !== "N/A" ? movie.Poster : 'https://via.placeholder.com/300x450?text=No+Image'}" class="card-img-top" alt="${movie.Title}">
+                <div class="card-body">
+                  <h5 class="card-title">${movie.Title}</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">${movie.Year}</h6>
+                  <a href="#" class="see-detail text-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-id="${movie.imdbID}">See Detail</a>
+                </div>
+              </div>
+            </div>
+          `);
+        });
+      } else {
+        $('#movie-list').html(`<p class="text-center">Movie not found!</p>`);
+        // jika pencarian gagal, tampilkan rekomendasi lagi
+        $('#recommended-container').show();
+      }
+    },
+    error: function() {
+      $('#movie-list').html(`<p class="text-center text-danger">Failed to fetch data!</p>`);
+      // error juga tampilkan rekomendasi
+      $('#recommended-container').show();
+    }
+  });
+}
+
+$('#search-button').on('click', function() {
+  const keyword = $('#search-input').val().trim();
+  searchMovies(keyword);
+});
+
+$(document).ready(function() {
+  loadRecommendedMovies();
+});
   // Event klik untuk 'See Detail' dari recommended movie
   $(document).on('click', '.see-detail', function () {
     const imdbID = $(this).data('id');
 
     $.ajax({
-      url: 'http://www.omdbapi.com',
+      url: 'https://www.omdbapi.com',
       type: 'get',
       dataType: 'json',
       data: {
