@@ -15,13 +15,8 @@ footer {
     padding-top:12px;
 }
 
-.ig-thumbnail {
-    width: 200px;
-    height: 200px;
-    float: left;
-    overflow: hidden;
+.navbar-nav .nav-link {
+  color: white !important;
+  font-weight: bold;
 }
 
-.ig-thumbnail img {
-    width: 200px;
-}
