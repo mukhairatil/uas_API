@@ -57,14 +57,16 @@
       <hr>
       <div class="mb-4">
 </div>
-<div id="recommended-container" class="container mt-4">
-    <h5>Recommended Movies</h5>
-    <div class="row" id="recommended-movies"></div>
+<div class="container">
+  <!-- Hasil pencarian -->
+  <div id="movie-list" class="row"></div>
+
+  <!-- Rekomendasi film -->
+  <div id="recommended-container" class="mt-4">
+    <h4>Recommended Movies</h4>
+    <div id="recommended-movies" class="row"></div>
+  </div>
 </div>
-
-
-      <div class="row" id="movie-list"></div>
-    </div>
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -133,11 +135,17 @@
 function searchMovies(keyword) {
   $('#movie-list').html(''); // kosongkan hasil sebelumnya
 
-  if (keyword === '') {
-    // Jika pencarian kosong, tampilkan rekomendasi lagi
+  if (keyword.trim() === '') {
+    // Jika kosong, tampilkan rekomendasi
+    $('#recommended-container').show();
+    $('#movie-list').hide(); // sembunyikan hasil pencarian
     loadRecommendedMovies();
     return;
   }
+
+  // Jika keyword ada, cari film
+  $('#recommended-container').hide();
+  $('#movie-list').show();
 
   $.ajax({
     url: 'https://www.omdbapi.com',
@@ -148,9 +156,8 @@ function searchMovies(keyword) {
       s: keyword
     },
     success: function(response) {
-      if(response.Response === "True") {
+      if (response.Response === "True") {
         const movies = response.Search;
-        // sembunyikan rekomendasi saat ada hasil pencarian
         $('#recommended-container').hide();
         movies.forEach(movie => {
           $('#movie-list').append(`
@@ -168,17 +175,16 @@ function searchMovies(keyword) {
         });
       } else {
         $('#movie-list').html(`<p class="text-center">Movie not found!</p>`);
-        // jika pencarian gagal, tampilkan rekomendasi lagi
         $('#recommended-container').show();
       }
     },
     error: function() {
       $('#movie-list').html(`<p class="text-center text-danger">Failed to fetch data!</p>`);
-      // error juga tampilkan rekomendasi
       $('#recommended-container').show();
     }
   });
 }
+
 
 $('#search-button').on('click', function() {
   const keyword = $('#search-input').val().trim();
