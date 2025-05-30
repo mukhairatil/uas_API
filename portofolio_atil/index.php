@@ -60,6 +60,9 @@ $latestVideoId = $result['items'][0]['id']['videoId'];
               <a class="nav-link" href="#about">About</a>
             </li>
             <li class="nav-item">
+              <a class="nav-link" href="#social">Social Media</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="#portfolio">Portofolio</a>
             </li>
             </li>
