@@ -39,7 +39,7 @@ $latestVideoId = $result['items'][0]['id']['videoId'];
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 
     <!-- My CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 
     <title>My Portfolio</title>
   </head>
@@ -175,28 +175,34 @@ $latestVideoId = $result['items'][0]['id']['videoId'];
 
 
     <!-- Portfolio -->
-    <section class="portfolio" id="portfolio">
-      <div class="container">
-        <div class="row pt-4 mb-4">
-          <div class="col text-center">
-            <h2>Portfolio</h2>
+<section class="portfolio" id="portfolio">
+  <div class="container">
+    <div class="row pt-4 mb-4">
+      <div class="col text-center">
+        <h2 class="font-weight-bold">Portfolio</h2>
+        <p class="text-muted">Beberapa proyek yang telah saya kerjakan</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-sm">
+          <img class="card-img-top" src="img/thumbs/cari.webp" alt="WPU Movie Project">
+          <div class="card-body">
+            <h5 class="card-title">Cari Info Movie!</h5>
+            <p class="card-text">Website pencarian film yang memanfaatkan API OMDB. Dibuat dengan HTML, CSS, dan JavaScript.</p>
+            <a href="../wpu_movie/index.html" class="btn btn-primary btn-sm">Lihat Proyek</a>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md mb-4">
-            <div class="card">
-              <img class="card-img-top" src="img/thumbs/1.png" alt="Card image cap">
-              <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              </div>
-            </div>
-          </div>
+      </div>
 
           <div class="col-md mb-4">
             <div class="card">
-              <img class="card-img-top" src="img/thumbs/2.png" alt="Card image cap">
+              <img class="card-img-top" src="img/thumbs/cari.webp" alt="Card image cap">
               <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <h5 class="card-title">Chatbot by Deepseek!</h5>
+                <p class="card-text">Website chatbot by Mukhairatil</p>
+                <a href="../chatbot_deepseek" class="btn btn-primary btn-sm">Lihat Proyek</a>
               </div>
             </div>
           </div>
