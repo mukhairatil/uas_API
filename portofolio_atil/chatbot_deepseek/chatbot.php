@@ -7,7 +7,7 @@ header('Content-Type: application/json');
 $input = json_decode(file_get_contents('php://input'), true);
 $userMessage = $input['message'] ?? '';
 
-$apiKey = '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';
+$apiKey = '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';
 $url = $url = 'https://openrouter.ai/api/v1/chat/completions';
 
 
@@ -19,7 +19,7 @@ $headers = [
 ];
 
 $payload = [
-    "model" => "deepseek/deepseek-r1-0528:free",
+    "model" => "google/gemma-3n-e4b-it:free",
     "messages" => [
         ["role" => "user", "content" => $userMessage]
     ]

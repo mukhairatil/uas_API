@@ -96,7 +96,8 @@ $.ajax({
       // Jangan tampilkan rekomendasi ulang saat tidak ditemukan hasil
     }
   },
-  error: function() {
-    $('.modal-body').html(`<p class="text-danger">Gagal mengambil data detail movie.</p>`);
-  }
+ error: function() {
+  $('.modal-body').html(`<p class="text-danger">Gagal mengambil data detail movie.</p>`);
+}
+}
 });

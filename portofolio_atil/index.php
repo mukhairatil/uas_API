@@ -26,6 +26,22 @@ $result = get_CURL($urlLatestVideo);
 //var_dump($result);
 $latestVideoId = $result['items'][0]['id']['videoId'];
 
+$accessToken = 'IGAAYnsn2NCF9BZAE1sU0piOWJObEg4UHQwZAXlkTzdnaWFqdEQtNVFoTnplOHZARSXdycl9tVC02WXN6ZAkR1V1VGQm9nZAVlsTDRPX1hZAVnJZAZAWF3UUsxeG94ZAmxHNHh5aHRUMElHOVh0WmhvYzQ0b3JyREVCeVV2RVBCaWxMVHZAvdwZDZD';
+
+$result = get_CURL("https://graph.instagram.com/me?fields=username,profile_picture_url,followers_count,id&access_token=$accessToken");
+
+$usernameIG = $result['username'];
+$profilePic = $result['profile_picture_url'];
+$followers = $result['followers_count'];
+$userId = $result['id'];
+
+// ID media postingan (hanya satu)
+$mediaId = '17977561673716254';
+
+// Ambil URL gambar dari media
+$mediaInfo = get_CURL("https://graph.instagram.com/$mediaId?fields=media_url&access_token=$accessToken");
+$postImageUrl = $mediaInfo['media_url'];
+
 ?>
 
 <!doctype html>
@@ -105,68 +121,69 @@ $latestVideoId = $result['items'][0]['id']['videoId'];
   </div>
 </section>
 
-    <!-- you tube dan ig -->
-     <section class="social" style="background: linear-gradient(to right, #4facfe, #00f2fe);" id="social">
-      <div class="container">
-        <div class = "row pt-4 mb-4">
-          <div class = "col text-center">
-            <h2 style="color: white;">Social Media</h2>
+<!-- you tube dan ig -->
+<section class="social" style="background: linear-gradient(to right, #4facfe, #00f2fe);" id="social">
+  <div class="container">
+    <div class="row pt-4 mb-4">
+      <div class="col text-center">
+        <h2 style="color: white;">Social Media</h2>
+      </div>
+    </div>
+
+    <!-- Tambahkan gap di sini -->
+    <div class="row justify-content-center" style="column-gap: 40px;">
+      <!-- YouTube -->
+      <div class="col-md-5">
+        <div class="row">
+          <div class="col-md-4">
+            <img src="<?= $youtubeProfilePic; ?>" width="200" class="rounded-circle img-thumbnail">
+          </div>
+          <div class="col-md-8">
+            <h5 style="color: white;"><?= $channelName; ?></h5>
+            <p style="color: white;"><?= $subscriber; ?> Subscriber</p>
+            <div class="g-ytsubscribe" data-channelid="UC_qiXx-3t4Ev2EinteL3OAw" data-layout="default" data-count="hidden"></div>
           </div>
         </div>
 
-        <div class="row justify-content-center g-4">
-          <div class = "col-md-5">
-          <div class="row">
-            <div class="col-md-4">
-              <img src = "<?= $youtubeProfilePic; ?>" width="200" class = "rounded-circle img-thumbnail">
+        <div class="row mt-3 pb-3">
+          <div class="col">
+            <div class="embed-responsive embed-responsive-16by9">
+              <iframe class="embed-responsive-item"
+                src="https://www.youtube.com/embed/<?= $latestVideoId ?>?rel=0"
+                title="YouTube video" allowfullscreen></iframe>
             </div>
-            <div class="col-md-8">
-              <h5 style="color: white;"><?= $channelName; ?></h5>
-              <ps tyle="color: white;"><?= $subscriber; ?> Subscriber</p>
-              <div class="g-ytsubscribe" data-channelid="UC_qiXx-3t4Ev2EinteL3OAw" data-layout="default" data-count="hidden"></div>
           </div>
         </div>
-        <div class = "row mt-3 pb-3">
-          <div class = "col">
-        <div class="embed-responsive embed-responsive-16by9">
-          <iframe class="embed-responsive-item"
-            src="https://www.youtube.com/embed/<?= $latestVideoId ?>?rel=0"
-            title="YouTube video" allowfullscreen></iframe>
+      </div>
+
+      <!-- Instagram -->
+      <div class="col-md-5">
+        <div class="row">
+          <div class="col-md-4">
+            <!-- Foto Profil IG -->
+            <img src="<?= $profilePic ?>" class="rounded-circle img-thumbnail" width="200">
+          </div>
+          <div class="col-md-8">
+            <!-- Username dan Followers IG -->
+            <h5 style="color: white;">@<?= $usernameIG ?></h5>
+            <p style="color: white;"><?= number_format($followers) ?> Followers</p>
+          </div>
+        </div>
+
+        <!-- Judul Feed -->
+        <h6 style="color: white;" class="mt-3">Instagram Feed</h6>
+
+        <!-- Galeri Instagram -->
+        <div class="row mt-1">
+          <div class="col-12 p-1">
+            <img src="<?= $postImageUrl ?>" class="img-fluid rounded"
+              style="max-width: 100%; max-height: 200px; height: auto; object-fit: contain;" alt="IG Post">
+          </div>
         </div>
       </div>
-      </div>
-      </div>      
-         <div class="col-md-5">
-  <div class="row">
-    <div class="col-md-4">
-      <img src="img\profile2.png" class="rounded-circle img-thumbnail" width="200">
-    </div>
-    <div class="col-md-8">
-      <h5 style="color: white;">@atil</h5>
-      <p style="color: white;">70000 Followers</p>
     </div>
   </div>
-
-  <!-- Tambahkan tulisan di sini -->
-  <h6 style="color: white;" class="mt-3">Instagram Feed</h6>
-
-  <!-- Galeri Instagram -->
-  <div class="row mt-1">
-    <div class="col-4 p-1">
-      <img src="img\thumbs\1 (1).jpeg" class="img-fluid rounded" alt="IG1">
-    </div>
-    <div class="col-4 p-1">
-      <img src="img\thumbs\1 (3).jpeg" class="img-fluid rounded" alt="IG2">
-    </div>
-    <div class="col-4 p-1">
-      <img src="img\thumbs\1 (4).jpeg" class="img-fluid rounded" alt="IG3">
-    </div>
-  </div>
-</div>
-
-  </div>
-</div>
-
+</section>
                         </div>
                       </div>
                     </div>
@@ -201,7 +218,7 @@ $latestVideoId = $result['items'][0]['id']['videoId'];
             <div class="card">
               <img class="card-img-top" src="img/thumbs/deepseek.jpg" alt="Card image cap">
               <div class="card-body">
-                <h5 class="card-title">Chatbot by Deepseek!</h5>
+                <h5 class="card-title">Chatbot AI!</h5>
                 <p class="card-text">Website chatbot by Mukhairatil</p>
                 <a href="chatbot_deepseek" class="btn btn-primary btn-sm">Lihat Proyek</a>
               </div>
